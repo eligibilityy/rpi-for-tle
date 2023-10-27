@@ -4,11 +4,10 @@ from gpiozero import LED, Servo
 import RPi.GPIO as GPIO
 
 servo = Servo(17)
-led_red = LED(18)
-led_green = LED(19)
+# led_red = LED(18)
+# led_green = LED(19)
 
 ip = '10.33.3.78'
-
 req = None
 
 class RequestHandler_httpd(BaseHTTPRequestHandler):
@@ -28,13 +27,12 @@ class RequestHandler_httpd(BaseHTTPRequestHandler):
 			print("Feeder is ON, please don't input any more requests.")
 			servo.max()  # Open the feeder
 			time.sleep(1)
-
+			
 		if req == 'off':
 			print('Feeder is OFF, waiting for request.')
 			servo.min()  # Close the feeder
 			time.sleep(1)
-   
-		
+			
 		return
 
 server_address_httpd = (ip,8080)
